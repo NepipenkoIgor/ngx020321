@@ -1,10 +1,10 @@
-<course-header [title]="title" (toggle)="toggleSideNav($event)" ></course-header>
+<course-header [title]="title" [drawer]="drawer">
+  <!--content-->
+</course-header>
 
-<img [attr.src]="logo" [alt]="title" [style.width.%]="logoWidth"
-(click)="clickOnImage(logo, $event)">
-
-
-<input type="text" (input)="onSearch($event)">
-{{searchTerm}}
-
-<div [innerHTML]="span"></div>
+<course-sidenav (setDrawerControl)="setDrawer($event)">
+  <ng-template #tmpl>
+    <course-search [(searchTerm)]="searchTerm"></course-search>
+    {{searchTerm}}
+  </ng-template>
+</course-sidenav>
