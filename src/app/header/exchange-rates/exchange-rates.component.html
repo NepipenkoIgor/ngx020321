@@ -1,0 +1,12 @@
+<div *courseExchangeRates="let r from rates autoplay mode period 2000; controller as ctrl"
+     (mouseenter)="cP.show();cN.show()"
+     (mouseleave)="cP.hide();cN.hide()"
+>
+  <button mat-button (click)="ctrl.prev()" courseHidden #cP='hiddenControl'>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <span>{{r.value}}</span>
+  <button mat-button (click)="ctrl.next()" courseHidden #cN='hiddenControl'>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

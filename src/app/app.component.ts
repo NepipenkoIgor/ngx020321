@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { IProduct, products$ } from './data';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UnSubscriber } from './utils/unsubscriber';
 import { filter } from 'rxjs/operators';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'course-root',
@@ -14,8 +15,11 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   public title = {text: 'ngx020321'};
   public drawer!: MatDrawer;
   public searchTerm = 'Product 1';
+  public onlyFavorites = false;
   // public products$: Observable<IProduct[]> = products$.pipe(delay(4000));
   public products1$: Observable<IProduct[]> = products$.pipe(filter<IProduct[]>(Boolean));
+
+  public requestControl$$ = new Subject();
 
   public logo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png';
 
@@ -26,7 +30,16 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-
+    // this.requestControl$$
+    //   .pipe(
+    //     debounceTime(500),
+    //     switchMap(() => {
+    //       return of('some value')
+    //         .pipe(delay(1000));
+    //     })
+    //   ).subscribe((v) => {
+    //   console.log(v);
+    // });
 
     // const sub1: Subscription = interval(2000)
     //   .pipe(takeUntil(this.subscribeControl))
@@ -59,6 +72,14 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
 
   public setDrawer(drawer: MatDrawer): void {
     this.drawer = drawer;
+  }
+
+  public sendRequest(): void {
+    this.requestControl$$.next();
+  }
+
+  public toggleOnlyFavorites(event: MatCheckboxChange): void {
+    this.onlyFavorites = event.checked;
   }
 }
 

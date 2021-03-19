@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     MatGridListModule,
     MatCardModule,
+    MatCheckboxModule,
     FlexLayoutModule
   ]
 })

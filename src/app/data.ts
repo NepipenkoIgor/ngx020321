@@ -87,3 +87,32 @@ export const products: IProduct[] = [
 
 export const products$: Observable<IProduct[]> = of(products)
   .pipe(delay(3000));
+
+// const usersField = {
+//   users: {
+//      hasData: false,
+//      isLoading: false,
+//      items: []
+//   }
+// }
+//
+//
+// @Injectable()
+// export class GetAllUsersEffect {
+//   constructor(private actions$: Actions, private userService: UserService, private store: Store) {}
+//   getAllUsersEffect$ = createEffect(() =>
+//     this.actions$.pipe(
+//       ofType(getAllUsersAction),
+//       concatLatestFrom((_) => this.store.select(usersShowedInListSelector)),
+//       filter((users)=> !users.hasData)
+//       switchMap(([_, userList]) => {
+//         return this.userService.getAll().pipe(
+//           map((response) => {
+//             return getAllUsersSuccessAction({ response });
+//           }),
+//           catchError(() => of(getAllUsersErrorAction()))
+//         );
+//       })
+//     )
+//   );
+// }

@@ -3,8 +3,11 @@
 <course-sidenav (setDrawerControl)="setDrawer($event)">
   <ng-template #tmpl>
     <course-search [(searchTerm)]="searchTerm"></course-search>
+    <mat-checkbox (change)="toggleOnlyFavorites($event)">Show only favorites</mat-checkbox>
+    <!--    <button mat-button (click)="sendRequest()">Click</button>-->
     <mat-grid-list cols="4" [rowHeight]="500" *ngIf="products1$ | async as products; else loader  ">
-      <mat-grid-tile *ngFor="let product of products | productsFilter:searchTerm;  index as i; odd as isOdd">
+      <mat-grid-tile
+        *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites;  index as i; odd as isOdd">
         <course-product-card [product]="product" [isOdd]="isOdd"></course-product-card>
       </mat-grid-tile>
     </mat-grid-list>

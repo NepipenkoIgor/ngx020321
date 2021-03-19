@@ -2,13 +2,14 @@
   <div>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
             (click)="toggleSideNav()"
-      >
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{title?.text}}</span>
   </div>
 
-  <div>
+  <div fxLayout="row">
+    <course-exchange-rates></course-exchange-rates>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
     </button>

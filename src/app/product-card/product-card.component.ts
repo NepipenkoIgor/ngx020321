@@ -13,4 +13,8 @@ export class ProductCardComponent {
 
   @Input()
   public isOdd!: boolean;
+
+  public toggleFavorite(): void {
+    this.product.isFavorite = !this.product.isFavorite;
+  }
 }
