@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { IProduct, products$ } from './data';
 import { Observable, Subject } from 'rxjs';
 import { UnSubscriber } from './utils/unsubscriber';
-import { filter } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { IProduct, ProductsService } from './products.service';
 
 @Component({
   selector: 'course-root',
@@ -17,7 +16,7 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   public searchTerm = 'Product 1';
   public onlyFavorites = false;
   // public products$: Observable<IProduct[]> = products$.pipe(delay(4000));
-  public products1$: Observable<IProduct[]> = products$.pipe(filter<IProduct[]>(Boolean));
+  public products1$: Observable<IProduct[]> = this.productsService.getProducts();
 
   public requestControl$$ = new Subject();
 
@@ -25,8 +24,10 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
 
   constructor(
     // private applicationRef: ApplicationRef,
+    private productsService: ProductsService
   ) {
     super();
+    console.log(this.productsService.timestamp);
   }
 
   public ngOnInit(): void {

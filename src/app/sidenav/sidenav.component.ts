@@ -10,11 +10,18 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'course-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  styleUrls: ['./sidenav.component.css'],
+  // providers: [
+  //   {
+  //     provide: ProductsService,
+  //     useClass: ProductsService
+  //   }
+  // ]
 })
 export class SidenavComponent implements OnInit, AfterViewInit {
 
@@ -31,14 +38,15 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   public setDrawerControl: EventEmitter<MatDrawer> = new EventEmitter(true);
 
   constructor(
-    // private  cdr: ChangeDetectorRef
+    private  productsService: ProductsService
   ) {
+    console.log(this.productsService);
   }
 
   ngOnInit(): void {
     console.log(this.tmpl);
     console.log(this.contentPlace);
-    this.contentPlace.createEmbeddedView(this.tmpl);
+    // this.contentPlace.createEmbeddedView(this.tmpl);
   }
 
   public ngAfterViewInit(): void {

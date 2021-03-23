@@ -1,7 +1,7 @@
 <course-header [title]="title" [drawer]="drawer"></course-header>
 
 <course-sidenav (setDrawerControl)="setDrawer($event)">
-  <ng-template #tmpl>
+<!--  <ng-template #tmpl>-->
     <course-search [(searchTerm)]="searchTerm"></course-search>
     <mat-checkbox (change)="toggleOnlyFavorites($event)">Show only favorites</mat-checkbox>
     <!--    <button mat-button (click)="sendRequest()">Click</button>-->
@@ -16,7 +16,7 @@
     <!--      <pre> {{products | json}}</pre>-->
     <!--    </ng-container>-->
 
-  </ng-template>
+<!--  </ng-template>-->
 </course-sidenav>
 
 <ng-template #loader>

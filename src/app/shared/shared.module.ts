@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { BASE_URL_TOKEN } from '../config';
+import { environment } from '../../environments/environment';
 
 
 @NgModule({
@@ -26,8 +30,23 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatGridListModule,
     MatCardModule,
     MatCheckboxModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
   ]
 })
 export class SharedModule {
+  public static forRoot(): ModuleWithProviders<SharedModule> {
+    return  {
+      ngModule: SharedModule,
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+        },
+        {provide: BASE_URL_TOKEN, useValue: environment.baseUrl, multi: true},
+        {provide: 'baseUrl', useValue: 'http://localhost:3000', multi: true},
+      ]
+    }
+  }
 }
