@@ -1,22 +1,22 @@
 <course-header [title]="title" [drawer]="drawer"></course-header>
 
 <course-sidenav (setDrawerControl)="setDrawer($event)">
-<!--  <ng-template #tmpl>-->
-    <course-search [(searchTerm)]="searchTerm"></course-search>
-    <mat-checkbox (change)="toggleOnlyFavorites($event)">Show only favorites</mat-checkbox>
-    <!--    <button mat-button (click)="sendRequest()">Click</button>-->
-    <mat-grid-list cols="4" [rowHeight]="500" *ngIf="products1$ | async as products; else loader  ">
-      <mat-grid-tile
-        *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites;  index as i; odd as isOdd">
-        <course-product-card [product]="product" [isOdd]="isOdd"></course-product-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <!--  <ng-template #tmpl>-->
+  <course-search [(searchTerm)]="searchTerm"></course-search>
+  <mat-checkbox (change)="toggleOnlyFavorites($event)">Show only favorites</mat-checkbox>
+  <!--    <button mat-button (click)="sendRequest()">Click</button>-->
+  <mat-grid-list cols="4" [rowHeight]="500" *ngIf="products1$ | async as products; else loader  ">
+    <mat-grid-tile
+      *ngFor="let product of products | productsFilter:searchTerm:onlyFavorites;  index as i; odd as isOdd">
+      <course-product-card [product]="product" [isOdd]="isOdd"></course-product-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <!--    <ng-container *ngIf="products1$ | async as products; else loader  ">-->
-    <!--      <pre> {{products | json}}</pre>-->
-    <!--    </ng-container>-->
+  <!--    <ng-container *ngIf="products1$ | async as products; else loader  ">-->
+  <!--      <pre> {{products | json}}</pre>-->
+  <!--    </ng-container>-->
 
-<!--  </ng-template>-->
+  <!--  </ng-template>-->
 </course-sidenav>
 
 <ng-template #loader>
@@ -24,3 +24,6 @@
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>
+
+
+<course-modal></course-modal>

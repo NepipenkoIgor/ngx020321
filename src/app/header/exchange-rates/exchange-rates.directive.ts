@@ -68,7 +68,6 @@ export class ExchangeRatesDirective implements OnInit {
 
   private initInterval(): this {
     this.intervalId = setInterval(() => {
-      console.log('MOVE');
       this.next();
     }, this.ms);
     return this;

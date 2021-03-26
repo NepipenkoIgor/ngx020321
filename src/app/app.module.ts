@@ -13,6 +13,7 @@ import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.d
 import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
 import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import { ProductsService } from './products.service';
+import { ModalModule } from './modal/modal.module';
 // NgModule --> es6
 // declarations ----> let/const
 // imports ----> import
@@ -29,15 +30,16 @@ import { ProductsService } from './products.service';
     ProductsFilterPipe,
     ExchangeRatesDirective,
     ExchangeRatesComponent,
-    HiddenDirective // Pipe, Directives
+    HiddenDirective,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
-    ProductsService,
+    ProductsService
   ],
   bootstrap: [AppComponent]
 })

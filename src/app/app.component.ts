@@ -31,38 +31,15 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // this.requestControl$$
-    //   .pipe(
-    //     debounceTime(500),
-    //     switchMap(() => {
-    //       return of('some value')
-    //         .pipe(delay(1000));
-    //     })
-    //   ).subscribe((v) => {
-    //   console.log(v);
-    // });
+    const seq = new Subject();
+    seq.subscribe((v: any) => {
+      console.log(`V ====> ${v}`);
+    });
 
-    // const sub1: Subscription = interval(2000)
-    //   .pipe(takeUntil(this.subscribeControl))
-    //   .subscribe((v: number) => {
-    //     console.log(v);
-    //   }, () => {
-    //   }, () => {
-    //     console.log('COMPLETED 1');
-    //   });
-    //
-    //
-    // setTimeout(() => {
-    //   sub1.unsubscribe();
-    // }, 10000);
-
-
-    // products$.subscribe((products: IProduct[]) => {
-    //   this.products = products;
-    // }, () => {
-    // }, () => {
-    //   console.log('COMPLETED 2');
-    // });
+    setTimeout(() => {
+      console.log('SEND');
+      seq.next('Rxjs is awesome');
+    }, 5000);
   }
 
   public ngOnDestroy(): void {

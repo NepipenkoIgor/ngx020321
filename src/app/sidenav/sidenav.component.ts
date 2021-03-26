@@ -44,19 +44,11 @@ export class SidenavComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.tmpl);
-    console.log(this.contentPlace);
-    // this.contentPlace.createEmbeddedView(this.tmpl);
   }
 
   public ngAfterViewInit(): void {
 
     this.setDrawerControl.emit(this.sidenav);
-    // Promise.resolve().then(() => {
-    //   this.sidenav.toggle();
-    // });
-
-    // this.cdr.detectChanges();
   }
 
 }

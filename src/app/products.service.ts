@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface IProduct {
   '_id': string;
@@ -18,9 +18,7 @@ export class ProductsService {
 
   constructor(
     private http: HttpClient,
-    @Optional() @Inject('token') private service: string
   ) {
-    console.log(this.service);
   }
 
   public getProducts(): Observable<IProduct[]> {

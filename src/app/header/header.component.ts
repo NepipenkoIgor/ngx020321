@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -30,18 +29,10 @@ export class HeaderComponent implements OnInit {
 
   public isOpen = false;
 
-  constructor(
-    private changeDetectorRef: ChangeDetectorRef
-  ) {
-    console.log('title ==>', this.title);
+  constructor() {
   }
 
   ngOnInit(): void {
-    //   this.changeDetectorRef.detach();
-    setTimeout(() => {
-      this.changeDetectorRef.detectChanges();
-    }, 8000);
-    //   console.log('title ==>', this.title);
   }
 
   public toggleSideNav(): void {

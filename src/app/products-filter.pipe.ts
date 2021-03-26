@@ -8,7 +8,6 @@ import { IProduct } from './products.service';
 export class ProductsFilterPipe implements PipeTransform {
 
   public transform(products: IProduct[], searchText: string, onlyFavorites: boolean = false): IProduct[] {
-    console.log('PIPE!!!!!!');
     let result: IProduct[] = products;
     if (onlyFavorites) {
       result = result.filter((product: IProduct) => {
