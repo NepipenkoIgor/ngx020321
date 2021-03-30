@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductResolver } from './product-details/product.resolver';
+import { DeactivateProductGuard } from './deactivate-product.guard';
 
 export const routes: Routes = [
   {
@@ -14,7 +15,8 @@ export const routes: Routes = [
     component: ProductDetailsComponent,
     resolve: {
       product: ProductResolver
-    }
+    },
+    canDeactivate: [DeactivateProductGuard]
   }
 ];
 
@@ -26,7 +28,8 @@ export const routes: Routes = [
     RouterModule
   ],
   providers: [
-    ProductResolver
+    ProductResolver,
+    DeactivateProductGuard
   ]
 })
 export class ProductsRoutingModule {

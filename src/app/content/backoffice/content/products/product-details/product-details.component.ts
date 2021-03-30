@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'course-product-details',
@@ -12,7 +13,8 @@ export class ProductDetailsComponent implements OnInit {
   public product$ = this.activatedRoute.data.pipe(pluck('product'));
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
   }
 
@@ -24,6 +26,10 @@ export class ProductDetailsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log(queryParams);
     });
+  }
+
+  public goBack(): void {
+    this.location.back();
   }
 
 }
