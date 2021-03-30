@@ -15,10 +15,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { BASE_URL_TOKEN } from '../config';
 import { environment } from '../../environments/environment';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   exports: [
+    CommonModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -32,21 +34,23 @@ import { environment } from '../../environments/environment';
     MatCheckboxModule,
     FlexLayoutModule,
     HttpClientModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ]
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
-    return  {
+    return {
       ngModule: SharedModule,
       providers: [
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthInterceptor,
-          multi: true
-        },
         {provide: BASE_URL_TOKEN, useValue: environment.baseUrl, multi: true},
         {provide: 'baseUrl', useValue: 'http://localhost:3000', multi: true},
       ]
-    }
+    };
   }
 }

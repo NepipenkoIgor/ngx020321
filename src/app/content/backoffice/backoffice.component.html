@@ -1,0 +1,7 @@
+<course-header [title]="title" [drawer]="drawer"></course-header>
+
+<course-sidenav (setDrawerControl)="setDrawer($event)">
+
+ <router-outlet></router-outlet>
+
+</course-sidenav>

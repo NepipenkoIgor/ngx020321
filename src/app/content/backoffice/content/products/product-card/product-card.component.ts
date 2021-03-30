@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IProduct, ProductsService } from '../products.service';
-import { ModalService } from '../modal/modal.service';
+import { IProduct } from '../products.service';
+import { ModalService } from '../../../../../modal/modal.service';
 
 @Component({
   selector: 'course-product-card',
@@ -17,9 +17,7 @@ export class ProductCardComponent {
 
   constructor(
     private modalService: ModalService,
-    private productsService: ProductsService,
   ) {
-    console.log(this.productsService.timestamp);
   }
 
   public toggleFavorite(): void {
