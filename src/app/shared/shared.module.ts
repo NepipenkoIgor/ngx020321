@@ -16,6 +16,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { BASE_URL_TOKEN } from '../config';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OnlyLettersDirective } from './validators/only-leters.directive';
 
 
 @NgModule({
@@ -34,6 +36,9 @@ import { CommonModule } from '@angular/common';
     MatCheckboxModule,
     FlexLayoutModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OnlyLettersDirective
   ],
   providers: [
     {
@@ -41,7 +46,8 @@ import { CommonModule } from '@angular/common';
       useClass: AuthInterceptor,
       multi: true
     },
-  ]
+  ],
+  declarations: [OnlyLettersDirective]
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {

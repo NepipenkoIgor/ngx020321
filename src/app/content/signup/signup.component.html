@@ -1,1 +1,46 @@
-<p (click)="goToLogin()">signup works!</p>
+<div class="signup-content">
+  <mat-card [formGroup]="signUpForm">
+    <mat-card-content>
+      <p>Sign up to continue</p>
+      <mat-form-field>
+        <input matInput type="text" name="username" placeholder="Username"
+               [formControl]="getControl(signUpForm,'username')"
+               courseOnlyLetters>
+        <mat-error
+          *ngIf="getControl(signUpForm,'username')?.errors?.onlyLetters as onlyLetters">{{onlyLetters}}</mat-error>
+      </mat-form-field>
+      <div fxLayout="column">
+        <div fxLayout="row"
+             *ngFor="let control of getArrayControl(signUpForm, 'emails'); index as i; first as f; count as c">
+          <mat-form-field>
+            <input matInput type="text" [formControl]="control">
+          </mat-form-field>
+
+          <div fxLayout="row" fxFlex="10">
+            <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
+            <mat-icon *ngIf="c > 1" (click)="removeEmail(i)">delete</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div>Male</div>
+        <course-switcher formControlName="male"></course-switcher>
+      </div>
+      <div formGroupName="password">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Password"
+                 name="password" formControlName="password" required minlength="4">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Confirm Password"
+                 name="password" formControlName="cpassword" required minlength="4">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <button mat-raised-button color="primary" [disabled]="signUpForm.invalid || signUpForm.pending"
+            (click)="signup(signUpForm.value)">Log
+      In
+    </button>
+    <a mat-button (click)="goToLogin()">Log In!</a>
+  </mat-card>
+</div>
