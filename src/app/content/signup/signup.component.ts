@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators, ValidationErrors, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../store';
+import { increment } from '../../store/actions/counter.actions';
+import { navigationGo } from '../../store/actions/router.actions';
 
 @Component({
   selector: 'course-signup',
@@ -24,13 +27,17 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
+    private store: Store<IRootState>
   ) {
   }
 
+
   public ngOnInit(): void {
+    this.store.dispatch(increment({counterName: 'counter1'}));
+    this.store.dispatch(increment({counterName: 'counter2'}));
+
     this.getControl(this.signUpForm, 'username')
       .statusChanges.subscribe((status) => {
       console.log(status);
@@ -38,7 +45,7 @@ export class SignupComponent implements OnInit {
   }
 
   public goToLogin(): void {
-    this.router.navigate(['/login']);
+    this.store.dispatch(navigationGo({payload: {path: ['/login']}}));
   }
 
   public signup(user: any): void {

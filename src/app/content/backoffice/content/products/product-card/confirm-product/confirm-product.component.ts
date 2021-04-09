@@ -1,7 +1,7 @@
 import { Component, Input, NgModule, OnDestroy } from '@angular/core';
-import { IProduct } from '../../products.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { IProduct } from '../../store/reducers/products.reducers';
 
 @Component({
   selector: 'course-confirm-product',

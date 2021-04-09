@@ -6,6 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { CustomSerializer, reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RouterEffects } from './store/effects/router.effects';
 // NgModule --> es6
 // declarations ----> let/const
 // imports ----> import
@@ -21,7 +27,21 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     SharedModule.forRoot(),
     ModalModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      features: {
+        pause: false,
+        lock: true,
+        persist: true
+      }
+    }),
+    EffectsModule.forRoot([RouterEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    })
   ],
   bootstrap: [AppComponent]
 })

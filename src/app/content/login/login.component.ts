@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../store';
+import { increment } from '../../store/actions/counter.actions';
 
 interface IAuthUser {
   username: string;
@@ -12,10 +15,13 @@ interface IAuthUser {
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private store: Store<IRootState>
+  ) {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(increment({counterName: 'counter1'}));
   }
 
   public login(user: IAuthUser): void {

@@ -5,8 +5,8 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from '../products.service';
 import { catchError, map } from 'rxjs/operators';
+import { IProduct } from '../store/reducers/products.reducers';
 
 @Injectable()
 export class ProductResolver implements Resolve<IProduct | null> {
