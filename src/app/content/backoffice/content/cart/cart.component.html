@@ -1,0 +1,8 @@
+<course-one-product-in-cart *ngFor="let product of products$ | async; trackBy: trackByFn"
+                            [product]="product"
+                            (increment)="increment(product)"
+                            (decrement)="decrement(product)"
+                            (remove)="remove(product)"
+>
+
+</course-one-product-in-cart>

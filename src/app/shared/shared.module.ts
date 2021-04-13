@@ -18,6 +18,7 @@ import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyLettersDirective } from './validators/only-leters.directive';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { OnlyLettersDirective } from './validators/only-leters.directive';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    OnlyLettersDirective
+    OnlyLettersDirective,
+    MatBadgeModule
   ],
   providers: [
     {

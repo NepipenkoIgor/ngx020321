@@ -4,6 +4,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../../store';
+import { totalProductsCount } from '../../../store/selectors/cart.selectors';
 
 @Component({
   selector: 'course-header',
@@ -29,7 +32,11 @@ export class HeaderComponent implements OnInit {
 
   public isOpen = false;
 
-  constructor() {
+  public cartProductsCount$ = this.store.select(totalProductsCount);
+
+  constructor(
+    private store: Store<IRootState>
+  ) {
   }
 
   ngOnInit(): void {

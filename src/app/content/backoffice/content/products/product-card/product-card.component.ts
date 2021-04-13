@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { ModalService } from '../../../../../modal/modal.service';
 import { IProduct } from '../store/reducers/products.reducers';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../../../../store';
+import { addProductToCart } from '../../../../../store/actions/cart.actions';
 
 @Component({
   selector: 'course-product-card',
@@ -17,6 +20,7 @@ export class ProductCardComponent {
 
   constructor(
     private modalService: ModalService,
+    private store: Store<IRootState>,
   ) {
   }
 
@@ -32,6 +36,7 @@ export class ProductCardComponent {
         product: this.product,
         save: () => {
           console.log('To cart');
+          this.store.dispatch(addProductToCart({product: {...this.product}}));
           this.modalService.close();
         },
         close: () => {

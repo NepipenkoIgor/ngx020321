@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { ModalModule } from './modal/modal.module';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { CustomSerializer, reducers } from './store';
+import { CustomSerializer, debug, logoutAndClearState, reducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -28,7 +28,7 @@ import { RouterEffects } from './store/effects/router.effects';
     SharedModule.forRoot(),
     ModalModule.forRoot(),
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, {metaReducers: [debug, logoutAndClearState]}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
